@@ -1,403 +1,446 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Header with logo -->
-<header style="text-align: center; padding: 10px;">
-  <img src="logo.png" alt="ADR ONLINE SERVICES Logo" style="height: 80px;">
-</header>
-    <title>ADR ONLINE SERVICES</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ADR ONLINE SERVICES — One‑Stop Service Hub</title>
+  <meta name="description" content="ADR ONLINE SERVICES: Aadhaar & PAN services, Passport, GST registration & filing, New bank account opening, LIC policy, all types of insurance, government e‑services links, graphics & social media marketing, photo/video editing. Call/WhatsApp +91‑8851211328."/>
+  <meta property="og:title" content="ADR ONLINE SERVICES" />
+  <meta property="og:description" content="One‑stop online service hub for Aadhaar, PAN, Passport, GST, Banking, Insurance, Govt services and more."/>
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    :root{
+      --bg:#0f172a;           /* slate-900 */
+      --panel:#0b1024;        /* deep panel */
+      --card:#111936;         /* slate-800ish */
+      --muted:#94a3b8;        /* slate-400 */
+      --text:#e5e7eb;         /* gray-200 */
+      --brand:#22c55e;        /* green-500 */
+      --brand-600:#16a34a;
+      --accent:#38bdf8;       /* sky-400 */
+      --danger:#ef4444;       /* red-500 */
+      --shadow:0 10px 30px rgba(0,0,0,.30);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;
+      background: radial-gradient(1200px 600px at 10% -10%, #1e293b55, transparent),
+                  radial-gradient(900px 600px at 110% 30%, #0ea5e955, transparent),
+                  var(--bg);
+      color:var(--text);
+      letter-spacing:.1px;
+    }
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}/* Layout */
+.app{display:grid; grid-template-columns:280px 1fr; min-height:100vh}
+.sidebar{
+  position:sticky; top:0; height:100vh; overflow:auto;
+  background: linear-gradient(180deg, #0b1024 0%, #0b122a 100%);
+  border-right:1px solid #1f2937; padding:22px; box-shadow:var(--shadow);
+}
+.brand{display:flex; align-items:center; gap:12px; margin-bottom:22px}
+.logo{
+  width:46px; height:46px; border-radius:12px; background:linear-gradient(135deg, var(--brand), #4ade80);
+  display:grid; place-items:center; font-weight:800; color:#052e16; box-shadow:0 6px 18px rgba(34,197,94,.35);
+}
+.brand h1{font-size:1.15rem; margin:0; line-height:1.1}
+.tag{display:inline-block; margin-top:6px; font-size:.78rem; color:#cbd5e1}
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-        }
+nav .group{margin:20px 0}
+nav h3{font-size:.85rem; color:#9ca3af; margin:0 0 10px}
+.nav-btn{width:100%; text-align:left; padding:12px 14px; margin:8px 0; border-radius:12px; border:1px solid #243041; background:#0e1530; color:#dbeafe; cursor:pointer}
+.nav-btn:hover{border-color:#2e3c52; background:#111a3a}
 
-        /* Header */
-        header {
-            background-color: #fff;
-            padding: 20px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+.contact{
+  margin-top:24px; padding:14px; border:1px dashed #2b3750; border-radius:14px; background:#0c132d;
+}
+.contact a{display:block; margin:8px 0; font-size:.95rem}
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.main{padding:28px;}
+.header{position:sticky; top:0; z-index:5; backdrop-filter:blur(8px); background:rgba(15,23,42,.65); border-bottom:1px solid #1f2937; margin:-28px -28px 18px; padding:16px 28px}
+.header .row{display:flex; gap:12px; align-items:center; justify-content:space-between}
 
-        .logo {
-            display: flex;
-            align-items: center;
-        }
+.search{flex:1; display:flex; gap:10px}
+.search input{flex:1; padding:12px 14px; border-radius:12px; border:1px solid #273245; background:#0c142d; color:var(--text)}
+.search button{padding:12px 16px; border-radius:12px; border:1px solid #1f2a3d; background:var(--brand); color:#052e16; font-weight:700; cursor:pointer}
+.search button:hover{background:var(--brand-600)}
 
-        .logo img {
-            height: 40px; /* Adjust logo size */
-            margin-right: 10px;
-        }
+/* Hero */
+.hero{
+  display:grid; grid-template-columns:1.1fr .9fr; gap:22px; align-items:center; margin:8px 0 26px;
+}
+.hero .card{background:linear-gradient(160deg,#0f1a3f,#0b1024); border:1px solid #1f2947; border-radius:var(--radius); padding:24px; box-shadow:var(--shadow)}
+.hero h2{margin:0 0 8px; font-size:1.9rem}
+.hero p{margin:0 0 16px; color:var(--muted)}
+.hero .cta{display:flex; gap:12px; flex-wrap:wrap}
+.btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid #253249; background:#0e1530; color:#dbeafe; cursor:pointer}
+.btn.primary{background:var(--brand); color:#052e16; font-weight:800; border-color:#0e9f6e}
+.btn.primary:hover{background:var(--brand-600)}
 
-        .logo h1 {
-            font-size: 24px;
-            color: #004d40;
-            margin: 0;
-        }
+/* Sections */
+.section{margin:28px 0}
+.section h3{margin:0 0 14px}
+.grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+.card{background:#0d1430; border:1px solid #1c2746; border-radius:16px; padding:16px; box-shadow:var(--shadow)}
+.card:hover{border-color:#2a3a64}
+.card h4{margin:4px 0; font-size:1.05rem}
+.meta{font-size:.9rem; color:#a5b4fc}
+.muted{color:var(--muted); font-size:.9rem}
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1500x600.png?text=Professional+Services+Image') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+.chip{padding:6px 10px; border-radius:999px; border:1px solid #2a3753; font-size:.85rem; background:#0e1634}
 
-        .hero h2 {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
+/* Footer */
+footer{margin:40px 0 10px; padding-top:20px; border-top:1px solid #1f2937; color:#9ca3af; font-size:.9rem}
 
-        .hero p {
-            font-size: 18px;
-            max-width: 600px;
-            margin: auto;
-        }
+/* Modal & Drawer */
+.overlay{position:fixed; inset:0; background:rgba(0,0,0,.5); display:none; place-items:center; z-index:50}
+.overlay.show{display:grid}
+.modal{width:min(680px,92vw); background:#0b122a; border:1px solid #25314a; border-radius:18px; box-shadow:var(--shadow)}
+.modal header{display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-bottom:1px solid #1e293b}
+.modal .content{padding:18px}
+.modal .actions{display:flex; justify-content:flex-end; gap:10px; padding:0 18px 18px}
 
-        /* Services Section */
-        .services-section {
-            padding: 50px 0;
-            background-color: #fff;
-        }
+.form-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.field{display:flex; flex-direction:column; gap:6px}
+.field input,.field select,.field textarea{padding:12px 12px; border-radius:12px; border:1px solid #25314a; background:#0c142d; color:var(--text)}
+.field textarea{min-height:110px}
 
-        .services-section h2 {
-            text-align: center;
-            font-size: 36px;
-            color: #004d40;
-            margin-bottom: 40px;
-        }
+/* Floating actions */
+.floating{position:fixed; right:18px; bottom:18px; display:flex; flex-direction:column; gap:12px; z-index:60}
+.fab{display:inline-flex; align-items:center; gap:10px; padding:12px 14px; border-radius:999px; border:1px solid #243041; background:#0e1530; color:#e2e8f0; box-shadow:var(--shadow)}
 
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
+/* Responsive */
+@media (max-width: 1100px){ .grid{grid-template-columns:repeat(2,1fr)} .hero{grid-template-columns:1fr} .app{grid-template-columns:1fr} .sidebar{position:relative; height:auto}}
+@media (max-width: 640px){ .grid{grid-template-columns:1fr} }
 
-        .service-card {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .service-card img {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 15px;
-        }
-
-        .service-card h3 {
-            font-size: 20px;
-            color: #004d40;
-            margin: 10px 0;
-        }
-
-        .service-card p {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .service-card a {
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 15px;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            right: -250px; /* Initially hidden */
-            width: 250px;
-            height: 100%;
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            transition: right 0.3s ease-in-out;
-            z-index: 100;
-        }
-
-        .sidebar.active {
-            right: 0;
-        }
-
-        .sidebar a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 10px 0;
-            border-bottom: 1px solid #4a6a8c;
-        }
-
-        .sidebar-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #004d40;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 101;
-        }
-
-        /* Modal for Service Details */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 200;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 600px;
-            position: relative;
-        }
-
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close-btn:hover,
-        .close-btn:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #004d40;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        footer .contact-info {
-            margin-top: 20px;
-            font-size: 16px;
-        }
-    </style>
+  </style>
 </head>
 <body>
-
-    <header>
-        <div class="container navbar">
-            <div class="logo">
-                <img src="https://via.placeholder.com/40.png?text=Logo" alt="ADR ONLINE SERVICES Logo">
-                <h1>ADR ONLINE SERVICES</h1>
-            </div>
-            <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <!-- Simple SVG logo; replace with your PNG/JPG if you like -->
+        <div class="logo" title="ADR ONLINE SERVICES" aria-label="Logo">ADR</div>
+        <div>
+          <h1>ADR ONLINE SERVICES</h1>
+          <span class="tag">One‑Stop Digital Service Center</span>
         </div>
-    </header>
-
-    <div id="mySidebar" class="sidebar">
-        <a href="#services">Services</a>
-        <a href="tel:+918851211328">Call Us: +91-8851211328</a>
-        <a href="https://wa.me/918851211328" target="_blank">WhatsApp Support</a>
-        <a href="mailto:adronlineservice@gmail.com">Email Us</a>
-        <a href="#">Payment Gateway</a>
-        <a href="#">About Us</a>
+      </div><nav>
+    <div class="group">
+      <h3>Quick Access</h3>
+      <button class="nav-btn" onclick="scrollToId('services')">All Services</button>
+      <button class="nav-btn" onclick="scrollToId('govt')">Govt e‑Services</button>
+      <button class="nav-btn" onclick="openRequest('General Enquiry')">Request a Service</button>
+      <button class="nav-btn" onclick="openPayment()">Pay Now (Secure)</button>
     </div>
-
-    <section class="hero">
-        <div class="container">
-            <h2>Your One-Stop Solution for All Online Services</h2>
-            <p>Aadhaar, PAN, Passport, GST, Insurance, and many more services at your fingertips.</p>
-        </div>
-    </section>
-
-    <section id="services" class="services-section">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="service-grid">
-                <div class="service-card" onclick="openModal('Aadhaar Update', 'Aadhaar update and correction services. Link to government website for direct access.', 'https://uidai.gov.in/')">
-                    <img src="https://via.placeholder.com/80.png?text=Aadhaar" alt="Aadhaar">
-                    <h3>Aadhaar Services</h3>
-                    <p>Update and correct your Aadhaar details with ease.</p>
-                </div>
-
-                <div class="service-card" onclick="openModal('PAN Card Services', 'New PAN card application and correction services. Link to government portal.', 'https://www.onlineservices.nsdl.com/')">
-                    <img src="https://via.placeholder.com/80.png?text=PAN" alt="PAN">
-                    <h3>PAN Card Services</h3>
-                    <p>Apply for a new PAN card or correct existing details.</p>
-                </div>
-
-                <div class="service-card" onclick="openModal('Passport Services', 'New passport application and renewal services. Link to official passport portal.', 'https://www.passportindia.gov.in/')">
-                    <img src="https://via.placeholder.com/80.png?text=Passport" alt="Passport">
-                    <h3>Passport Services</h3>
-                    <p>New passport application and renewals made simple.</p>
-                </div>
-
-                <div class="service-card" onclick="openModal('GST Services', 'New GST registration and filing services. Link to GST portal.', 'https://www.gst.gov.in/')">
-                    <img src="https://via.placeholder.com/80.png?text=GST" alt="GST">
-                    <h3>GST Services</h3>
-                    <p>New GST registration and tax filing assistance.</p>
-                </div>
-                
-                <div class="service-card" onclick="openModal('Insurance Services', 'Health, term life, vehicle, shop, and travel insurance plans available. We help you find the best plan.', '')">
-                    <img src="https://via.placeholder.com/80.png?text=Insurance" alt="Insurance">
-                    <h3>Insurance</h3>
-                    <p>Find the right insurance plan for your health and assets.</p>
-                </div>
-                
-                <div class="service-card" onclick="openModal('Govt. Services', 'Ayushman Card, E-Shram, ABHA Card, EPFO, and other government services. We provide direct links to official websites.', '')">
-                    <img src="https://via.placeholder.com/80.png?text=Govt" alt="Govt">
-                    <h3>Govt. Services</h3>
-                    <p>Access various government schemes and services easily.</p>
-                </div>
-
-                <div class="service-card" onclick="openModal('Graphic Design', 'Professional graphic design services for logos, brochures, social media posts, and more.', '')">
-                    <img src="https://via.placeholder.com/80.png?text=Design" alt="Design">
-                    <h3>Graphic Design</h3>
-                    <p>Create stunning visuals for your brand and business.</p>
-                </div>
-
-                <div class="service-card" onclick="openModal('Social Media Marketing', 'Boost your online presence with our social media marketing campaigns.', '')">
-                    <img src="https://via.placeholder.com/80.png?text=SMM" alt="SMM">
-                    <h3>SMM</h3>
-                    <p>Engage your audience and grow your business online.</p>
-                </div>
-
-                <div class="service-card" onclick="openModal('Photo/Video Editing', 'Professional photo and video editing services for all your needs.', '')">
-                    <img src="https://via.placeholder.com/80.png?text=Editing" alt="Editing">
-                    <h3>Editing</h3>
-                    <p>High-quality photo and video editing services.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <div id="serviceModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <p id="modalDescription"></p>
-            <div id="modalLinks"></div>
-        </div>
+    <div class="group">
+      <h3>Support</h3>
+      <div class="contact">
+        <strong>Customer Support</strong>
+        <a href="https://wa.me/918851211328?text=Hello%20ADR%20ONLINE%20SERVICES" target="_blank" rel="noopener">WhatsApp: +91‑8851211328</a>
+        <a href="tel:+918851211328">Call: +91‑8851211328</a>
+        <a href="mailto:adronlineservice@gmail.com">Email: adronlineservice@gmail.com</a>
+        <a href="#faq">FAQs</a>
+        <a href="#policies">Terms & Privacy</a>
+      </div>
     </div>
+  </nav>
+</aside>
 
-    <footer>
-        <div class="container">
-            <div class="contact-info">
-                <p><strong>Contact Us:</strong></p>
-                <p>Call or WhatsApp: <a href="tel:+918851211328" style="color:white; text-decoration:none;">+91-8851211328</a></p>
-                <p>Email: <a href="mailto:adronlineservice@gmail.com" style="color:white; text-decoration:none;">adronlineservice@gmail.com</a></p>
-            </div>
+<!-- Main -->
+<main class="main">
+  <!-- Sticky header -->
+  <div class="header">
+    <div class="row">
+      <div class="search">
+        <input id="searchInput" placeholder="Search services (e.g., PAN, GST, Insurance)…" oninput="filterCards()"/>
+        <button onclick="openRequest('General Enquiry')">Request Service</button>
+      </div>
+      <button class="btn primary" onclick="openPayment()">Pay Now</button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="card">
+      <h2>Sabhi Services ek hi jagah — Fast, Secure, Professional.</h2>
+      <p>ADR ONLINE SERVICES me aapko milta hai Aadhaar & PAN se lekar Passport, GST, Bank Account, LIC, saare Insurance, Govt e‑Services ke direct links, saath hi Graphics, Social Media Marketing aur Photo/Video Editing — sab kuch!</p>
+      <div class="cta">
+        <button class="btn primary" onclick="scrollToId('services')">Explore Services</button>
+        <button class="btn" onclick="scrollToId('govt')">Govt e‑Services</button>
+        <button class="btn" onclick="openRequest('General Enquiry')">Talk to Us</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="muted">Upload your logo (PNG/JPG) named <strong>logo.png</strong> in the same folder to replace the SVG left icon. Or edit the SVG text to customize.</div>
+      <div class="chips" style="margin-top:12px">
+        <span class="chip">Aadhaar • PAN • Passport</span>
+        <span class="chip">GST Registration & Filing</span>
+        <span class="chip">Bank Account Opening</span>
+        <span class="chip">LIC & All Insurance</span>
+        <span class="chip">Govt Scheme Links</span>
+        <span class="chip">Graphics & SMM</span>
+        <span class="chip">Photo/Video Editing</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section" id="services">
+    <h3>Our Services</h3>
+    <div class="grid" id="serviceGrid"><!-- cards injected by JS --></div>
+  </section>
+
+  <!-- Government Services (external official links) -->
+  <section class="section" id="govt">
+    <h3>Govt e‑Services (Official Websites)</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Ayushman Bharat (PM‑JAY)</h4>
+        <p class="muted">Eligibility, e‑card & hospitals</p>
+        <div class="chips">
+          <a class="chip" href="https://pmjay.gov.in/" target="_blank" rel="noopener">Open Official Site</a>
         </div>
-    </footer>
+      </div>
+      <div class="card">
+        <h4>e‑Shram</h4>
+        <p class="muted">Unorganized workers registration</p>
+        <div class="chips">
+          <a class="chip" href="https://eshram.gov.in/" target="_blank" rel="noopener">Open Official Site</a>
+        </div>
+      </div>
+      <div class="card">
+        <h4>ABHA (Health ID)</h4>
+        <p class="muted">Create/Manage your ABHA ID</p>
+        <div class="chips">
+          <a class="chip" href="https://abha.abdm.gov.in/" target="_blank" rel="noopener">Open Official Site</a>
+        </div>
+      </div>
+      <div class="card">
+        <h4>EPFO</h4>
+        <p class="muted">PF services for members</p>
+        <div class="chips">
+          <a class="chip" href="https://www.epfindia.gov.in/" target="_blank" rel="noopener">EPFO Portal</a>
+          <a class="chip" href="https://passbook.epfindia.gov.in/MemberPassBook/Login" target="_blank" rel="noopener">Passbook</a>
+        </div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:10px">Disclaimer: Above are external official websites. ADR ONLINE SERVICES is an independent facilitation center.</p>
+  </section>
 
-    <script>
-        // JavaScript for Sidebar and Modal functionality
+  <!-- FAQs & Policies -->
+  <section class="section" id="faq">
+    <h3>FAQs</h3>
+    <div class="card">
+      <details open>
+        <summary><strong>Payment gateway kaise work karega?</strong></summary>
+        <p class="muted">"Pay Now" pe click karne par secure payment modal open hota hai. Yaha aap apna Razorpay/PayU/PhonePe/UPI link integrate kar sakte hain (is template me placeholder diya gaya hai).</p>
+      </details>
+      <details>
+        <summary><strong>Service documents kaise submit karein?</strong></summary>
+        <p class="muted">"Request Service" form me document upload option hai. Aap WhatsApp/email par bhi bhej sakte hain.</p>
+      </details>
+      <details>
+        <summary><strong>Processing time kitna hota hai?</strong></summary>
+        <p class="muted">Service par depend karta hai — Aadhaar/PAN/GST/Passport alag‑alag timelines follow karte hain. Hum aapko receipt/acknowledgement shared karte hain.</p>
+      </details>
+    </div>
+  </section>
 
-        // Toggle Sidebar
-        function toggleSidebar() {
-            const sidebar = document.getElementById('mySidebar');
-            sidebar.classList.toggle('active');
-        }
+  <section class="section" id="policies">
+    <h3>Terms & Privacy</h3>
+    <div class="card muted">
+      <p>By using our website, you agree to our terms. We collect only necessary details to process your service. Your data is kept confidential and shared only with relevant authorities/service providers as required.</p>
+    </div>
+  </section>
 
-        // Modal functionality
-        const modal = document.getElementById('serviceModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDescription = document.getElementById('modalDescription');
-        const modalLinks = document.getElementById('modalLinks');
+  <footer>
+    <div>© <span id="year"></span> ADR ONLINE SERVICES. All rights reserved.</div>
+  </footer>
+</main>
 
-        function openModal(title, description, link) {
-            modalTitle.textContent = title;
-            modalDescription.textContent = description;
-            modalLinks.innerHTML = ''; // Clear previous links
-
-            if (link) {
-                const linkButton = document.createElement('a');
-                linkButton.href = link;
-                linkButton.target = '_blank';
-                linkButton.textContent = 'Go to Official Website';
-                linkButton.style.display = 'block';
-                linkButton.style.marginTop = '20px';
-                linkButton.style.padding = '10px 20px';
-                linkButton.style.backgroundColor = '#007bff';
-                linkButton.style.color = 'white';
-                linkButton.style.textAlign = 'center';
-                linkButton.style.borderRadius = '5px';
-                linkButton.style.textDecoration = 'none';
-                modalLinks.appendChild(linkButton);
-            }
-
-            // Example of adding a payment button
-            const paymentButton = document.createElement('button');
-            paymentButton.textContent = 'Proceed to Payment';
-            paymentButton.style.marginTop = '10px';
-            paymentButton.style.padding = '10px 20px';
-            paymentButton.style.backgroundColor = '#28a745';
-            paymentButton.style.color = 'white';
-            paymentButton.style.border = 'none';
-            paymentButton.style.borderRadius = '5px';
-            paymentButton.style.cursor = 'pointer';
-            paymentButton.onclick = function() {
-                alert('Payment gateway integration will be implemented here.');
-            };
-            modalLinks.appendChild(paymentButton);
-            
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
-
-</body>
-</html>
+  </div>  <!-- Floating quick actions -->  <div class="floating">
+    <a class="fab" href="https://wa.me/918851211328?text=Hello%20ADR%20ONLINE%20SERVICES" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+    <a class="fab" href="tel:+918851211328">📞 Call Support</a>
+    <a class="fab" href="mailto:adronlineservice@gmail.com">✉️ Email Us</a>
+  </div>  <!-- Request Service Modal -->  <div class="overlay" id="requestOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="reqTitle">
+      <header>
+        <strong id="reqTitle">Request Service</strong>
+        <button class="btn" onclick="closeRequest()">✕</button>
+      </header>
+      <div class="content">
+        <form id="requestForm" onsubmit="submitRequest(event)">
+          <div class="form-grid">
+            <div class="field">
+              <label>Full Name</label>
+              <input required name="name" placeholder="Your name" />
+            </div>
+            <div class="field">
+              <label>Mobile Number</label>
+              <input required name="phone" placeholder="10‑digit mobile" pattern="[0-9]{10}" />
+            </div>
+            <div class="field">
+              <label>Email</label>
+              <input type="email" name="email" placeholder="you@example.com" />
+            </div>
+            <div class="field">
+              <label>Choose Service</label>
+              <select name="service" id="serviceSelect"></select>
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label>Details / Message</label>
+              <textarea name="message" placeholder="Write your requirements…"></textarea>
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label>Document Upload (optional)</label>
+              <input type="file" name="files" multiple />
+            </div>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn" onclick="closeRequest()">Cancel</button>
+            <button type="submit" class="btn primary">Submit Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>  <!-- Payment Modal (placeholder – hook your gateway) -->  <div class="overlay" id="paymentOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="payTitle">
+      <header>
+        <strong id="payTitle">Secure Payment</strong>
+        <button class="btn" onclick="closePayment()">✕</button>
+      </header>
+      <div class="content">
+        <div class="muted" style="margin-bottom:12px">Use your gateway link (Razorpay/PhonePe/PayU etc.). For now this is a demo form.</div>
+        <form id="paymentForm" onsubmit="submitPayment(event)">
+          <div class="form-grid">
+            <div class="field">
+              <label>Payer Name</label>
+              <input required name="payer" placeholder="Your name" />
+            </div>
+            <div class="field">
+              <label>Mobile</label>
+              <input required name="pmobile" placeholder="10‑digit mobile" pattern="[0-9]{10}" />
+            </div>
+            <div class="field">
+              <label>Amount (₹)</label>
+              <input required name="amount" type="number" min="1" step="1" placeholder="999" />
+            </div>
+            <div class="field">
+              <label>Purpose</label>
+              <select name="purpose">
+                <option>Service Fee</option>
+                <option>Advance</option>
+                <option>Full Payment</option>
+              </select>
+            </div>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn" onclick="closePayment()">Cancel</button>
+            <button type="submit" class="btn primary">Proceed to Pay</button>
+          </div>
+        </form>
+        <div id="upiBox" class="card" style="margin:10px 0; display:none">
+          <strong>UPI Link (demo):</strong>
+          <div class="muted" id="upiLink"></div>
+        </div>
+      </div>
+    </div>
+  </div>  <!-- Service Detail Modal -->  <div class="overlay" id="detailOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <header>
+        <strong id="detailTitle">Service Details</strong>
+        <button class="btn" onclick="closeDetail()">✕</button>
+      </header>
+      <div class="content" id="detailBody"></div>
+      <div class="actions">
+        <button class="btn" onclick="closeDetail()">Close</button>
+        <button class="btn primary" onclick="openRequest(selectedServiceName)">Request This Service</button>
+      </div>
+    </div>
+  </div>  <script>
+    // ======= Data =======
+    const services = [
+      {
+        name: "Aadhaar Update",
+        tag: "ID Services",
+        details: `<ul>
+          <li>Demographic update (Name/DOB/Address/Email/Mobile)</li>
+          <li>Biometric update (where applicable)</li>
+          <li>Document checklist & appointment assistance</li>
+        </ul>`
+      },
+      {
+        name: "New PAN Card & Corrections",
+        tag: "ID Services",
+        details: `<ul>
+          <li>New PAN application (Form 49A/49AA)</li>
+          <li>Correction/Update PAN details</li>
+          <li>e‑PAN download assistance</li>
+        </ul>`
+      },
+      {
+        name: "Passport Services",
+        tag: "Travel",
+        details: `<ul>
+          <li>Fresh passport, Renewal, Re‑issue</li>
+          <li>Police verification guidance</li>
+          <li>Appointment slot assistance</li>
+        </ul>`
+      },
+      {
+        name: "GST Registration & Filing",
+        tag: "Business",
+        details: `<ul>
+          <li>New GST registration</li>
+          <li>Monthly/Quarterly GST return filing</li>
+          <li>e‑Invoicing & compliance support</li>
+        </ul>`
+      },
+      {
+        name: "New Bank Account Opening",
+        tag: "Banking",
+        details: `<ul>
+          <li>Assistance with account type selection (Savings/Current)</li>
+          <li>KYC documentation support</li>
+          <li>Online/offline process guidance</li>
+        </ul>`
+      },
+      {
+        name: "LIC Policy Services",
+        tag: "Insurance",
+        details: `<ul>
+          <li>New policy consultation</li>
+          <li>Premium payment reminders</li>
+          <li>Claims & servicing support</li>
+        </ul>`
+      },
+      {
+        name: "Insurance (All Types)",
+        tag: "Insurance",
+        details: `<ul>
+          <li>Health Insurance</li>
+          <li>Term Life Insurance</li>
+          <li>Motor/Vehicle Insurance</li>
+          <li>Shop Insurance</li>
+          <li>Travel Insurance</li>
+        </ul>`
+      },
+      {
+        name: "Graphic Design",
+        tag: "Branding",
+        details: `<ul>
+          <li>Logos, Business cards, Flyers</li>
+          <li>Stationery & Marketing Collateral</li>
+          <li>Quick turn‑around options</li>
+        </ul>`
+      },
+      {
+        name: "Social Media Marketing",
+        tag: "Marketing",
+        details: `<ul>
+          <li>Account setup
